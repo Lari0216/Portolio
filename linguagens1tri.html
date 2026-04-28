@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linguagens | Player Acadêmico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Belleza&family=Josefin+Sans:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #050505;
+            --bg-card: #0d0d0d;
+            --gold: #D4AF37;
+            --gold-bright: #f1d592;
+            --fg: #F0EDE6;
+            --muted: #666;
+            --border: rgba(212,175,55,0.2);
+            --font-display: 'Limelight', cursive;
+            --font-body: 'Josefin Sans', sans-serif;
+            --font-btn: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-body);
+            color: var(--fg);
+            overflow: hidden;
+        }
+
+        .player-shell {
+            width: 95%;
+            max-width: 1300px;
+            height: 90vh;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            display: flex;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.9), inset 0 0 100px rgba(212,175,55,0.05);
+        }
+
+        .nav-back {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            color: var(--gold-bright);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+        .nav-back:hover { color: #fff; transform: translateX(-5px); }
+
+        /* --- ESQUERDA --- */
+        .player-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--border);
+            background: radial-gradient(circle at center, #1a1508 0%, #0a0a0a 100%);
+            padding: 40px;
+        }
+
+        .vinyl-container {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .disco {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #2a2211 0%, #000 70%);
+            border-radius: 50%;
+            border: 4px solid #1a1508;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            position: relative;
+            animation: rotate 12s linear infinite;
+            animation-play-state: paused;
+        }
+
+        .disco::after {
+            content: ''; position: absolute; inset: 5px; border-radius: 50%;
+            background: repeating-radial-gradient(circle, transparent 0, transparent 2px, rgba(255,255,255,0.02) 3px);
+        }
+
+        .disco-label {
+            position: absolute; width: 110px; height: 110px; background: var(--gold);
+            border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            border: 8px solid #000; display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display); color: #000; font-size: 1.2rem; text-align: center; z-index: 2;
+        }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .fake-controls { display: flex; gap: 30px; align-items: center; margin-bottom: 20px; }
+        .ctrl-btn { background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; transition: 0.3s; }
+        .ctrl-btn:hover { color: var(--gold-bright); }
+        .play-btn { width: 50px; height: 50px; border-radius: 50%; background: var(--gold); color: #000; display: flex; align-items: center; justify-content: center; }
+
+        .visualizer { display: flex; gap: 4px; height: 30px; align-items: flex-end; }
+        .bar { width: 4px; background: var(--gold-bright); border-radius: 2px; animation: wave 1s ease-in-out infinite alternate; animation-play-state: paused; }
+        @keyframes wave { from { height: 5px; } to { height: 30px; } }
+
+        /* --- DIREITA --- */
+        .player-right { flex: 1.5; padding: 50px 60px; display: flex; flex-direction: column; overflow-y: auto; }
+
+        .album-info { margin-bottom: 30px; }
+        .album-tag { color: var(--gold-bright); font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 10px; }
+        .album-title { font-family: var(--font-display); font-size: 4rem; margin: 0; color: #fff; line-height: 1; }
+        .album-meta { color: var(--muted); font-size: 0.9rem; margin-top: 15px; display: flex; gap: 20px; border-bottom: 1px solid var(--border); padding-bottom: 20px;}
+
+        .trimester-nav { display: flex; gap: 15px; margin-bottom: 30px; }
+        .tri-btn { background: none; border: 1px solid var(--border); color: var(--muted); padding: 8px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s; }
+        .tri-btn.active { background: var(--gold); color: #000; border-color: var(--gold); font-weight: bold;}
+        .tri-btn.locked { opacity: 0.3; cursor: not-allowed; }
+
+        .track-item {
+            display: flex; align-items: center; padding: 15px 20px; border-radius: 12px;
+            margin-bottom: 10px; cursor: pointer; transition: 0.3s; background: rgba(255,255,255,0.02);
+        }
+        .track-item:hover { background: rgba(212,175,55, 0.05); transform: translateX(5px); }
+        .track-num { font-family: var(--font-display); color: var(--gold-bright); font-size: 1.5rem; width: 50px; }
+        .track-details { flex-grow: 1; }
+        .track-details strong { display: block; font-size: 1.1rem; color: #fff; }
+        .track-details span { font-size: 0.8rem; color: var(--muted); }
+
+        /* --- DETALHE --- */
+        .detail-view { display: none; }
+        .btn-back-list { background: rgba(212,175,55, 0.1); border: 1px solid var(--gold); color: var(--gold-bright); padding: 8px 15px; border-radius: 20px; cursor: pointer; margin-bottom: 20px; transition: 0.3s;}
+        .btn-back-list:hover { background: var(--gold); color: #000; }
+        
+        .media-container {
+            width: 100%; height: 350px; background: #000; border-radius: 15px;
+            margin-bottom: 25px; overflow: hidden; display: flex; align-items: center; justify-content: center;
+        }
+        .media-container img { width: 100%; height: 100%; object-fit: cover; }
+        .media-container iframe { width: 100%; height: 100%; border: none; }
+
+        .detail-card { background: #110e0a; padding: 30px; border-radius: 15px; border: 1px solid var(--border); }
+        .tag { background: rgba(212,175,55, 0.1); color: var(--gold-bright); font-size: 0.7rem; padding: 4px 10px; border-radius: 4px; margin-right: 5px; }
+        .detail-card h2 { font-family: var(--font-display); color: #fff; font-size: 2rem; margin-top: 10px; margin-bottom: 10px;}
+        .detail-skill { font-size: 0.85rem; color: var(--gold-bright); border-top: 1px dashed var(--border); margin-top: 20px; padding-top: 20px; line-height: 1.6; }
+
+        .progress-bar { height: 6px; background: #222; border-radius: 3px; margin: 20px 0; position: relative; }
+        .progress-fill { height: 100%; background: var(--gold-bright); width: 0%; transition: width 0.8s; }
+
+        /* Scrollbar customizada */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="player-shell">
+        <a href="index.html" class="nav-back"><span>&#8592;</span> HOME</a>
+
+        <div class="player-left">
+            <div class="vinyl-container">
+                <div class="disco" id="vinyl-disc">
+                    <div class="disco-label" id="disco-id">1º<br>TRI</div>
+                </div>
+            </div>
+            
+            <div class="fake-controls">
+                <button class="ctrl-btn">&#9664;&#9664;</button>
+                <button class="ctrl-btn play-btn" id="play-pause-btn">&#9658;</button>
+                <button class="ctrl-btn">&#9654;&#9654;</button>
+            </div>
+            
+            <div class="visualizer">
+                <div class="bar" style="animation-delay: 0s;"></div>
+                <div class="bar" style="animation-delay: 0.2s;"></div>
+                <div class="bar" style="animation-delay: 0.4s;"></div>
+                <div class="bar" style="animation-delay: 0.1s;"></div>
+                <div class="bar" style="animation-delay: 0.3s;"></div>
+            </div>
+        </div>
+
+        <div class="player-right">
+            
+            <div class="album-info">
+                <p class="album-tag">LANGUAGES & ARTS // VOL. 1</p>
+                <h1 class="album-title">LINGUAGENS</h1>
+                <div class="album-meta">
+                    <span><strong>Autor:</strong> Larissa Amorim</span>
+                    <span><strong>Ano:</strong> 2024</span>
+                    <span><strong>Gênero:</strong> Literatura & Mídia</span>
+                </div>
+            </div>
+
+            <div class="trimester-nav">
+                <button class="tri-btn active">1º Trimestre</button>
+                <button class="tri-btn locked">2º Trimestre</button>
+                <button class="tri-btn locked">3º Trimestre</button>
+            </div>
+
+            <div id="list-view">
+                <div class="track-item" onclick="showDetail('ling1')">
+                    <span class="track-num">01</span>
+                    <div class="track-details">
+                        <strong>A Paixão Segundo G.H</strong>
+                        <span>Vídeo e Mapa Conceitual • Literatura</span>
+                    </div>
+                    <span style="color:var(--gold-bright)">&#9658;</span>
+                </div>
+                
+                <div class="track-item" onclick="showDetail('ling2')">
+                    <span class="track-num">02</span>
+                    <div class="track-details">
+                        <strong>Jogos Digitais: Realismo no Brasil</strong>
+                        <span>Wordwall e Canva • Literatura</span>
+                    </div>
+                    <span style="color:var(--gold-bright)">&#9658;</span>
+                </div>
+            </div>
+
+            <div id="detail-view" class="detail-view">
+                <button class="btn-back-list" onclick="hideDetail()">&#8592; Voltar à Playlist</button>
+                
+                <div class="media-container" id="det-media">
+                    </div>
+
+                <div class="detail-card">
+                    <div id="det-tags"></div>
+                    <h2 id="det-title">Nome da Atividade</h2>
+                    <p id="det-desc" style="color: #ccc; line-height: 1.5; font-size: 0.95rem;"></p>
+                    
+                    <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+                    
+                    <div class="detail-skill" id="det-skill"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Dados das Atividades de Linguagens
+        const data = {
+            'ling1': {
+                id: '01',
+                title: 'Vídeo: A Paixão Segundo G.H',
+                tags: ['#Literatura', '#Vídeo', '#ClariceLispector'],
+                mediaType: 'iframe',
+                mediaSrc: 'https://www.youtube.com/embed/v1jptYC5Mwo', 
+                desc: 'Nesta atividade, o meu grupo (Grupo 6) produziu um vídeo para discutir se existe "certo ou errado" na experiência da G.H. Analisamos se o que ela viveu foi uma violação moral ou uma forma de se libertar das regras que a sociedade impõe. No fundo, questionamos se os nossos valores são absolutos ou se são apenas construções que a gente segue sem perceber.',
+                skill: '<strong>H4</strong> - Reconhecer a pluralidade de manifestações artísticas e culturais como forma de integração entre pessoas e diferentes grupos sociais.<br><br><strong>H22</strong> - Produzir textos técnicos (como o roteiro do vídeo e o mapa conceitual) de acordo com uma estrutura estabelecida.'
+            },
+            'ling2': {
+                id: '02',
+                title: 'Jogos Digitais: Realismo no Brasil',
+                tags: ['#Realismo', '#Wordwall', '#Gamificação'],
+                mediaType: 'iframe',
+                mediaSrc: 'https://www.canva.com/design/DAHB31eK4C0/IxbRqi24bWV-9AUkbmof2Q/view?embed', 
+                desc: 'Nesta atividade, revisamos as escolas literárias de um jeito diferente: criando jogos no Wordwall. Meu grupo ficou com o Realismo, e montamos perguntas e desafios sobre o tema para a turma. Foi uma forma bem mais divertida e criativa de estudar o conteúdo e trocar conhecimento com os outros grupos.',
+                skill: '<strong>H15</strong> - Produzir trabalhos individuais e coletivos, explorando materiais e técnicas ligados ao universo das composições artísticas e de práticas corporais.'
+            }
+        };
+
+        const vinyl = document.getElementById('vinyl-disc');
+        const playBtn = document.getElementById('play-pause-btn');
+        const visualizerBars = document.querySelectorAll('.bar');
+
+        function showDetail(id) {
+            const item = data[id];
+            
+            // Preenche os dados
+            document.getElementById('det-title').innerText = item.title;
+            document.getElementById('det-desc').innerText = item.desc;
+            
+            // Utilizando innerHTML para suportar negritos e quebras de linha nas Habilidades
+            document.getElementById('det-skill').innerHTML = '<span style="color:#fff; font-weight:bold;">Habilidades e Competências:</span><br><br>' + item.skill;
+            
+            document.getElementById('det-tags').innerHTML = item.tags.map(t => `<span class="tag">${t}</span>`).join('');
+            
+            // Monta a mídia
+            const mediaContainer = document.getElementById('det-media');
+            if (item.mediaType === 'image') {
+                mediaContainer.innerHTML = `<img src="${item.mediaSrc}" alt="${item.title}">`;
+            } else if (item.mediaType === 'iframe') {
+                mediaContainer.innerHTML = `<iframe src="${item.mediaSrc}" allowfullscreen></iframe>`;
+            }
+
+            // Animações do Player (Toca o disco)
+            document.getElementById('list-view').style.display = 'none';
+            document.getElementById('detail-view').style.display = 'block';
+            document.getElementById('disco-id').innerText = item.id;
+            
+            vinyl.style.animationPlayState = 'running';
+            visualizerBars.forEach(bar => bar.style.animationPlayState = 'running');
+            playBtn.innerHTML = '&#10074;&#10074;'; // Muda pra Pause
+            
+            // Simula a barra de progresso carregando
+            setTimeout(() => { document.getElementById('prog-fill').style.width = '35%'; }, 500);
+        }
+
+        function hideDetail() {
+            document.getElementById('list-view').style.display = 'block';
+            document.getElementById('detail-view').style.display = 'none';
+            document.getElementById('disco-id').innerHTML = '1º<br>TRI';
+            
+            // Para o disco
+            vinyl.style.animationPlayState = 'paused';
+            visualizerBars.forEach(bar => bar.style.animationPlayState = 'paused');
+            playBtn.innerHTML = '&#9658;'; // Muda pra Play
+            document.getElementById('prog-fill').style.width = '0%';
+        }
+    </script>
+</body>
+</html>

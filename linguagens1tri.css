@@ -1,0 +1,336 @@
+/* ══════════════════════════════════════════════════════
+   linguagens.css
+   CSS completo e isolado para as páginas de Linguagens
+   Usado por: linguagens1tri.html, linguagens2tri.html, linguagens3tri.html
+   Paleta: preto #0D0D0D, dourado #D4AF37, vermelho escuro #8B0000
+══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Limelight&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@600;700;800&display=swap');
+
+/* ── VARIÁVEIS GLOBAIS ── */
+:root {
+    --bg:            #0D0D0D;
+    --bg2:           #1A1A1A;
+    --bg3:           #222;
+    --gold:          #D4AF37;
+    --gold2:         #b8942a;
+    --fg:            #F0EDE6;
+    --muted:         rgba(240,237,230,.55);
+    --border:        rgba(212,175,55,.12);
+    --font-display:  'Limelight', cursive;
+    --font-body:     'Josefin Sans', sans-serif;
+    --font-ui:       'Montserrat', sans-serif;
+
+    /* Cor de acento específica de Linguagens */
+    --accent:        #8B0000;
+    --accent2:       #3d0000;
+    --accent-light:  rgba(139,0,0,.09);
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+/* ════════════════════════════════════════
+   NAVBAR
+════════════════════════════════════════ */
+.trim-navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    background: rgba(13,13,13,.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+.trim-navbar .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-size: 1.1rem;
+    color: var(--gold); letter-spacing: 2px;
+    text-decoration: none;
+}
+.logo-disc {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: radial-gradient(circle, #2a1e00 0%, #1a1200 40%, var(--bg) 100%);
+    border: 1.5px solid var(--gold);
+    position: relative;
+}
+.logo-disc::after {
+    content: ''; position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--gold2);
+}
+.trim-navbar .nav-links {
+    display: flex; gap: 28px; list-style: none;
+}
+.trim-navbar .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-family: var(--font-ui); font-size: .68rem;
+    letter-spacing: 2px; text-transform: uppercase;
+    transition: color .2s;
+}
+.trim-navbar .nav-links a:hover { color: var(--gold); }
+
+/* ════════════════════════════════════════
+   BOTÃO VOLTAR
+════════════════════════════════════════ */
+.back-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin: 90px 0 0 48px;
+    color: var(--muted);
+    font-family: var(--font-ui); font-size: .72rem;
+    letter-spacing: 2px; text-decoration: none;
+    border: 1px solid rgba(212,175,55,.18); border-radius: 100px;
+    padding: 9px 22px;
+    transition: all .25s;
+    width: fit-content;
+}
+.back-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ════════════════════════════════════════
+   HERO — layout 2 colunas
+════════════════════════════════════════ */
+.trim-hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    align-items: center;
+    padding-top: 64px;
+    overflow: hidden;
+    position: relative;
+}
+.trim-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 70% at 70% 50%, var(--accent-light) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Lado esquerdo */
+.trim-hero-left {
+    padding: 80px 60px 80px 80px;
+    display: flex; flex-direction: column; justify-content: center;
+}
+.trim-hero-tag {
+    font-size: .68rem; letter-spacing: 3px;
+    color: var(--gold2); text-transform: uppercase;
+    margin-bottom: 12px;
+}
+.trim-hero-subject {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 5rem);
+    color: var(--accent);          /* VERMELHO ESCURO — cor da matéria */
+    line-height: .9;
+    margin-bottom: 8px;
+}
+.trim-hero-trimnum {
+    font-family: var(--font-ui); font-size: .8rem;
+    letter-spacing: 4px; color: var(--muted);
+    text-transform: uppercase; margin-bottom: 28px;
+}
+
+/* Onda decorativa */
+.trim-wave {
+    width: 180px; height: 14px; margin-bottom: 24px;
+    background: var(--accent); opacity: .45;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 14'%3E%3Cpath d='M0 7 Q15 1 30 7 Q45 13 60 7 Q75 1 90 7 Q105 13 120 7 Q135 1 150 7 Q165 13 180 7' stroke='white' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 14'%3E%3Cpath d='M0 7 Q15 1 30 7 Q45 13 60 7 Q75 1 90 7 Q105 13 120 7 Q135 1 150 7 Q165 13 180 7' stroke='white' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    mask-size: cover; -webkit-mask-size: cover;
+}
+.trim-hero-desc {
+    color: var(--muted); font-size: .95rem;
+    line-height: 1.85; max-width: 400px;
+}
+
+/* Lado direito — disco */
+.trim-hero-right {
+    display: flex; align-items: center; justify-content: center;
+    height: 100%; position: relative; padding: 80px 0;
+}
+.trim-vinyl-wrap {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* Braço do toca-discos */
+.trim-tonearm {
+    position: absolute;
+    top: 20px; right: calc(50% - 60px);
+    width: 5px; height: 190px;
+    background: linear-gradient(to bottom, #8a7a60, #4a3a28, #2a1e10);
+    border-radius: 3px;
+    transform: rotate(22deg); transform-origin: top center;
+    z-index: 4;
+    box-shadow: 1px 1px 8px rgba(0,0,0,.6);
+}
+.trim-tonearm::before {
+    content: '';
+    position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
+    width: 18px; height: 18px; border-radius: 50%;
+    background: radial-gradient(circle, #aaa, #555);
+    border: 2px solid rgba(212,175,55,.35);
+}
+.trim-tonearm::after {
+    content: '';
+    position: absolute; bottom: -7px; left: 50%;
+    transform: translateX(-50%) rotate(-22deg);
+    width: 12px; height: 12px;
+    background: linear-gradient(135deg, #888, #333);
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+/* O disco de vinil */
+.trim-vinyl {
+    width: 380px; height: 380px; border-radius: 50%;
+    position: relative;
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255,255,255,.06) 0%, transparent 22%),
+        radial-gradient(circle at 50% 50%,
+            #1c1608 0%, #110d05 20%, #0a0800 40%, #110d05 60%, #1c1608 100%);
+    animation: vinylSpin 12s linear infinite;
+    box-shadow:
+        0 0 80px rgba(0,0,0,.9),
+        0 0 0 1px rgba(212,175,55,.1),
+        inset 0 0 50px rgba(0,0,0,.7);
+    z-index: 2;
+}
+@keyframes vinylSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+.trim-vinyl-grooves {
+    position: absolute; inset: 0; border-radius: 50%;
+    background: repeating-radial-gradient(
+        circle at 50% 50%,
+        transparent 0px, transparent 5px,
+        rgba(255,255,255,.018) 5px, rgba(255,255,255,.018) 6px
+    );
+}
+.trim-vinyl-highlight {
+    position: absolute; inset: 0; border-radius: 50%;
+    background: conic-gradient(
+        from 200deg,
+        transparent 0deg, rgba(212,175,55,.05) 18deg,
+        rgba(212,175,55,.15) 38deg, transparent 65deg, transparent 360deg
+    );
+}
+
+/* Label central — vermelho de Linguagens */
+.trim-vinyl-label {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 130px; height: 130px; border-radius: 50%;
+    background: radial-gradient(circle, #8B0000, #3d0000);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 4px;
+    border: 1px solid rgba(255,255,255,.15);
+    box-shadow: 0 0 20px rgba(0,0,0,.6);
+}
+.trim-vinyl-label-num {
+    font-family: var(--font-display); font-size: 2.2rem;
+    color: #fff; line-height: 1;
+}
+.trim-vinyl-label-text {
+    font-family: var(--font-ui); font-size: .55rem;
+    letter-spacing: 2px; color: rgba(255,255,255,.7);
+    text-transform: uppercase;
+}
+.trim-vinyl-hole {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--bg); border: 1px solid rgba(255,255,255,.2);
+    margin-top: 4px;
+}
+
+/* ════════════════════════════════════════
+   SEÇÃO DE ATIVIDADES
+════════════════════════════════════════ */
+.atividades-section {
+    padding: 80px 80px 100px;
+    border-top: 1px solid var(--border);
+}
+.section-tag-label {
+    font-size: .68rem; letter-spacing: 3px;
+    color: var(--gold2); text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.atividades-section h2 {
+    font-family: var(--font-display);
+    font-size: 2.4rem; color: var(--fg);
+    margin-bottom: 48px;
+}
+.atividades-list {
+    display: flex; flex-direction: column; gap: 16px;
+    max-width: 860px;
+}
+
+/* Cada item de atividade */
+.ativ-item {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    align-items: center; gap: 24px;
+    padding: 22px 28px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);  /* borda vermelha — Linguagens */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background .25s, transform .2s, box-shadow .25s;
+    text-decoration: none; color: var(--fg);
+}
+.ativ-item:hover {
+    background: var(--accent-light);
+    transform: translateX(4px);
+    box-shadow: 0 4px 24px rgba(0,0,0,.4);
+}
+.ativ-num {
+    font-family: var(--font-display); font-size: 1.6rem;
+    color: var(--accent); opacity: .65; line-height: 1;
+}
+.ativ-info { display: flex; flex-direction: column; gap: 4px; }
+.ativ-title {
+    font-family: var(--font-ui); font-size: .82rem;
+    font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--fg);
+}
+.ativ-desc { font-size: .85rem; color: var(--muted); line-height: 1.5; }
+.ativ-date { font-size: .7rem; letter-spacing: 1px; color: var(--muted); white-space: nowrap; }
+.ativ-arrow {
+    font-size: 1.1rem; color: var(--accent); opacity: .5;
+    transition: opacity .2s, transform .2s;
+}
+.ativ-item:hover .ativ-arrow { opacity: 1; transform: translateX(4px); }
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+.trim-footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 80px;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.trim-footer .logo {
+    font-family: var(--font-display); font-size: .9rem;
+    color: var(--gold); letter-spacing: 2px;
+    display: flex; align-items: center; gap: 8px;
+}
+.trim-footer p { font-size: .7rem; color: var(--muted); letter-spacing: 2px; }
+
+/* ════════════════════════════════════════
+   RESPONSIVO
+════════════════════════════════════════ */
+@media (max-width: 900px) {
+    .trim-hero { grid-template-columns: 1fr; }
+    .trim-hero-right { display: none; }
+    .trim-hero-left { padding: 80px 30px; }
+    .atividades-section { padding: 60px 30px 80px; }
+    .trim-navbar { padding: 0 24px; }
+    .back-btn { margin-left: 24px; }
+    .trim-footer { padding: 28px 30px; flex-direction: column; gap: 12px; text-align: center; }
+}
