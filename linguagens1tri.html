@@ -166,7 +166,7 @@
 <body>
 
     <div class="player-shell">
-        <a href="index.html" class="nav-back"><span>&#8592;</span> VOLTAR PARA PÁGINA INICIAL</a>
+        <a href="index.html" class="nav-back"><span>&#8592;</span> HOME</a>
 
         <div class="player-left">
             <div class="vinyl-container">
@@ -247,20 +247,20 @@
             'ling1': {
                 id: '01',
                 title: 'Documentário: A Paixão Segundo G.H',
-                tags: ['Literatura', 'Vídeo', 'Análise'],
+                tags: ['Literatura', 'Vídeo', 'Análise'], // Adicionado para corrigir o erro
                 mediaType: 'iframe',
                 mediaSrc: 'https://www.youtube.com/embed/v1jptYC5Mwo', 
-                desc: 'Nesta atividade, o meu grupo (Grupo 6) produziu um vídeo para discutir se existe "certo ou errado" na experiência da G.H. Analisamos se o que ela viveu foi uma violação moral ou uma forma de se libertar das regras que a sociedade impõe.',
-                skill: '<strong>H4</strong> - Reconhecer a pluralidade de manifestações artísticas e culturais como forma de integração entre pessoas e diferentes grupos sociais.<br><br><strong>H22</strong> - Produzir textos técnicos (como o roteiro do vídeo e o mapa conceitual) de acordo com uma estrutura estabelecida.'
+                desc: 'Nesta atividade, o meu grupo produziu um vídeo para discutir se existe "certo ou errado" na experiência da G.H. Analisamos se o que ela viveu foi uma violação moral ou uma forma de se libertar das regras sociais.',
+                skill: '<strong>H4</strong> - Reconhecer a pluralidade de manifestações artísticas e culturais.<br><br><strong>H22</strong> - Produzir textos técnicos de acordo com uma estrutura estabelecida.'
             },
             'ling2': {
                 id: '02',
                 title: 'Jogos Digitais: Realismo no Brasil',
-                tags: ['Gamificação', 'Realismo', 'Canva'],
+                tags: ['Gamificação', 'Canva', 'Literatura'], // Adicionado para corrigir o erro
                 mediaType: 'iframe',
                 mediaSrc: 'https://www.canva.com/design/DAHB31eK4C0/IxbRqi24bWV-9AUkbmof2Q/view?embed', 
-                desc: 'Nesta atividade, revisamos as escolas literárias de um jeito diferente: criando jogos no Wordwall. Meu grupo ficou com o Realismo, e montamos perguntas e desafios sobre o tema para a turma.',
-                skill: '<strong>H15</strong> - Produzir trabalhos individuais e coletivos, explorando materiais e técnicas ligados ao universo das composições artísticas e de práticas corporais.'
+                desc: 'Revisamos as escolas literárias criando jogos no Wordwall. Meu grupo ficou com o Realismo, montando desafios para a turma.',
+                skill: '<strong>H15</strong> - Produzir trabalhos individuais e coletivos, explorando materiais e técnicas artísticas.'
             }
         };
 
@@ -274,7 +274,7 @@
             document.getElementById('det-desc').innerText = item.desc;
             document.getElementById('det-skill').innerHTML = '<span style="color:#fff; font-weight:bold;">Habilidades e Competências:</span><br><br>' + item.skill;
             
-            // CORREÇÃO: Adicionado o array 'tags' no objeto data e agora o map funciona
+            // CORREÇÃO: O erro acontecia aqui porque item.tags não existia
             document.getElementById('det-tags').innerHTML = item.tags.map(t => `<span class="tag">${t}</span>`).join('');
             
             const mediaContainer = document.getElementById('det-media');
@@ -287,7 +287,7 @@
             vinyl.style.animationPlayState = 'running';
             visualizerBars.forEach(bar => bar.style.animationPlayState = 'running');
             playBtn.innerHTML = '&#10074;&#10074;';
-            setTimeout(() => { document.getElementById('prog-fill').style.width = '65%'; }, 500);
+            setTimeout(() => { document.getElementById('prog-fill').style.width = '35%'; }, 500);
         }
 
         function hideDetail() {
