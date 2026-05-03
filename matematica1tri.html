@@ -157,7 +157,7 @@
         .detail-card { background: #0a1212; padding: 30px; border-radius: 15px; border: 1px solid var(--border); }
         .tag { background: rgba(0, 229, 225, 0.1); color: var(--accent-bright); font-size: 0.7rem; padding: 4px 10px; border-radius: 4px; margin-right: 5px; }
         .detail-card h2 { font-family: var(--font-display); color: #fff; font-size: 2rem; }
-        .detail-skill { font-size: 0.85rem; color: var(--accent-bright); border-top: 1px dashed var(--border); margin-top: 20px; padding-top: 20px; }
+        .detail-skill { font-size: 0.85rem; color: var(--accent-bright); border-top: 1px dashed var(--border); margin-top: 20px; padding-top: 20px; line-height: 1.6; white-space: pre-line; }
 
         .progress-bar { height: 6px; background: #222; border-radius: 3px; margin: 20px 0; position: relative; }
         .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.8s; }
@@ -169,7 +169,7 @@
 <body>
 
     <div class="player-shell">
-        <a href="index.html" class="nav-back"><span>&#8592;</span> HOME</a>
+        <a href="index.html" class="nav-back"><span>&#8592;</span> VOLTAR PARA PÁGINA INICIAL</a>
 
         <div class="player-left">
             <div class="vinyl-container">
@@ -189,12 +189,12 @@
 
         <div class="player-right">
             <div class="album-info">
-                <p class="album-tag">EXACT SCIENCES // VOL. 1</p>
+                <p class="album-tag">VOL. 1</p>
                 <h1 class="album-title">MATEMÁTICA</h1>
                 <div class="album-meta">
-                    <span><strong>Autor:</strong> Larissa</span>
-                    <span><strong>Ano:</strong> 2024</span>
-                    <span><strong>Gênero:</strong> Lógica & Números</span>
+                    <span><strong>Autor:</strong> Larissa Amorim</span>
+                    <span><strong>Ano:</strong> 2026</span>
+                    <span><strong>Gênero:</strong> Análise Combinatória e Probabilidade</span>
                 </div>
             </div>
 
@@ -208,16 +208,16 @@
                 <div class="track-item" onclick="showDetail('mat1')">
                     <span class="track-num">01</span>
                     <div class="track-details">
-                        <strong>Funções do 1° Grau</strong>
-                        <span>Resolução de Problemas • Álgebra</span>
+                        <strong>AV1 - Atividade Quebrando a Banca</strong>
+                        <span>Probabilidade</span>
                     </div>
                     <span style="color:var(--accent-bright)">&#9658;</span>
                 </div>
                 <div class="track-item" onclick="showDetail('mat2')">
                     <span class="track-num">02</span>
                     <div class="track-details">
-                        <strong>Geometria Plana</strong>
-                        <span>Cálculo de Áreas • Desenho</span>
+                        <strong>AV2 - Jogo StarWars</strong>
+                        <span>Análise Combinátoria e Probabilidade</span>
                     </div>
                     <span style="color:var(--accent-bright)">&#9658;</span>
                 </div>
@@ -238,24 +238,26 @@
     </div>
 
     <script>
+        const skillsMath = `C5: Aplicar o pensamento probabilístico para quantificar e fazer previsões em situações aplicadas a diferentes áreas do conhecimento e da vida cotidiana.\n\nH30: Identificar dados, regularidades e relações numa situação que envolva o raciocínio combinatório, utilizando os processos de contagem.\n\nH31: Reconhecer fenômenos e eventos (naturais, científicos, tecnológicos e/ou sociais) de caráter aleatório, compreendendo o significado e a importância da probabilidade como meio de prever resultados.`;
+
         const data = {
             'mat1': {
                 id: '01',
-                title: 'Funções do 1° Grau',
-                tags: ['#Álgebra', '#Cálculo', '#Logica'],
-                mediaType: 'image',
-                mediaSrc: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1000', 
-                desc: 'Aplicação de funções lineares para resolver situações do cotidiano, como projeção de gastos e gráficos de crescimento.',
-                skill: 'EM13MAT302: Construir modelos para compreender fenômenos e resolver problemas.'
+                title: 'AV1 - Atividade Quebrando a Banca',
+                tags: ['Probabilidade', 'Cinema'],
+                mediaType: 'iframe',
+                mediaSrc: 'https://docs.google.com/document/d/1m0BmSYT66c8BIOGpiRSSJU8yu3Nghmt3DJORyzQna-A/preview', 
+                desc: 'Esta atividade utiliza o filme Quebrando a Banca como ponto de partida para explorar as aplicações práticas da Matemática. Por meio de um questionário reflexivo, os alunos analisarão o enredo e as motivações dos personagens, identificarão estratégias de probabilidade e contagem de cartas utilizadas no filme, e exercitarão a criatividade ao propor um roteiro cinematográfico fundamentado em conceitos matemáticos.',
+                skill: skillsMath
             },
             'mat2': {
                 id: '02',
-                title: 'Geometria Plana',
-                tags: ['#Geometria', '#Desenho', '#Áreas'],
+                title: 'AV2 - Jogo StarWars',
+                tags: ['Gamificação', 'Análise Combinatória'],
                 mediaType: 'iframe',
-                mediaSrc: 'https://www.youtube.com/embed/dQw4w9WgXcQ', 
-                desc: 'Exploração de propriedades de polígonos e círculos. Cálculo de áreas complexas através da decomposição de figuras.',
-                skill: 'EM13MAT307: Interpretar e construir modelos para resolver problemas que envolvem áreas.'
+                mediaSrc: 'https://www.canva.com/design/DAHHq2I-uX4/P__BXht6Fycf4WfJD792Vg/view?embed', 
+                desc: 'Nesta atividade prática e colaborativa, os alunos deverão desenvolver um jogo original aplicando os conceitos estudados em sala de aula, Análise Combinatória e Teoria da Probabilidade. Meu grupo criou War-StarWars, integrando mecânicas de estratégia com cálculos matemáticos reais.',
+                skill: skillsMath
             }
         };
 
@@ -266,11 +268,11 @@
             const item = data[id];
             document.getElementById('det-title').innerText = item.title;
             document.getElementById('det-desc').innerText = item.desc;
-            document.getElementById('det-skill').innerText = 'Habilidade: ' + item.skill;
+            document.getElementById('det-skill').innerText = 'Competências e Habilidades:\n\n' + item.skill;
             document.getElementById('det-tags').innerHTML = item.tags.map(t => `<span class="tag">${t}</span>`).join('');
             
             const media = document.getElementById('det-media');
-            media.innerHTML = item.mediaType === 'image' ? `<img src="${item.mediaSrc}">` : `<iframe src="${item.mediaSrc}"></iframe>`;
+            media.innerHTML = `<iframe src="${item.mediaSrc}" allowfullscreen></iframe>`;
 
             document.getElementById('list-view').style.display = 'none';
             document.getElementById('detail-view').style.display = 'block';
@@ -278,7 +280,7 @@
             
             vinyl.style.animationPlayState = 'running';
             playBtn.innerHTML = '&#10074;&#10074;';
-            setTimeout(() => { document.getElementById('prog-fill').style.width = '75%'; }, 100);
+            setTimeout(() => { document.getElementById('prog-fill').style.width = '100%'; }, 100);
         }
 
         function hideDetail() {
