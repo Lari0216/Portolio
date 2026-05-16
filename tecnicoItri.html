@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Técnico | 1° Trimestre — Portfólio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="modelagem1tri.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="trim-navbar">
+        <a href="index.html" class="logo">
+            <div class="logo-disc"></div>
+            PORTFÓLIO
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">INÍCIO</a></li>
+            <li><a href="index.html#sobre">SOBRE MIM</a></li>
+            <li><a href="index.html#areas">ÁREAS</a></li>
+            <li><a href="index.html#tecnico">CURSO TÉCNICO</a></li>
+            <li><a href="index.html#curriculo">CURRÍCULO</a></li>
+            <li><a href="index.html#extras">ATIVIDADES EXTRAS</a></li>
+            <li><a href="index.html#contato">CONTATO</a></li>
+        </ul>
+    </nav>
+
+    <a href="javascript:history.back()" class="back-btn" style="display:block;text-align:center;margin:82px auto 0;width:fit-content;">&#8592; VOLTAR PARA O INÍCIO</a>
+
+    <!-- HERO -->
+    <div class="trim-hero">
+        <div class="trim-hero-left">
+            <p class="trim-hero-tag">— CURSO TÉCNICO</p>
+            <h1 class="trim-hero-subject">TÉCNICO EM<br>DESENOLVIMENTO DE SISTEMAS</h1>
+            <p class="trim-hero-trimnum">1° TRIMESTRE</p>
+            <div class="trim-wave"></div>
+            <p class="trim-hero-desc">Selecione uma matéria abaixo para ver as atividades do 1° trimestre.</p>
+        </div>
+        <div class="trim-hero-right">
+            <div class="trim-vinyl-wrap">
+                <div class="trim-tonearm"></div>
+                <div class="trim-vinyl" id="trim-vinyl">
+                    <div class="trim-vinyl-grooves"></div>
+                    <div class="trim-vinyl-highlight"></div>
+                    <div class="trim-vinyl-label" id="trim-vinyl-label">
+                        <span class="trim-vinyl-label-num" id="trim-vinyl-num">TC</span>
+                        <span class="trim-vinyl-label-text">TÉCNICO</span>
+                        <div class="trim-vinyl-hole"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         MATÉRIAS — cada uma com suas atividades
+    ════════════════════════════════════════ -->
+
+    <!-- MODELAGEM DE SISTEMAS -->
+    <section class="materia-section" id="modelagem">
+        <div class="mat-header">
+            <div class="mat-header-left">
+<div class="ativ-item" onclick="openActivity('modelagem', '01', 'S.A. Modelagem de Sistemas', 'Situação de aprendizagem do 1° trimestre de Modelagem de Sistemas.<br><br><a href=\'https://www.canva.com/design/DAHEiMlngjI/JHzOzP0tJghXZUUKE24G7g/view\' target=\'_blank\' style=\'color: #d4af37; text-decoration: underline;\'>S.A - Modelagem</a> de João Victor Prange Hartmann', 'https://www.canva.com/design/DAHEiMlngjI/JHzOzP0tJghXZUUKE24G7g/view?embed', 'iframe')">                <div>
+                    <p class="mat-tag">1° TRIMESTRE</p>
+                    <h2 class="mat-title">Modelagem de Sistemas</h2>
+                </div>
+            </div>
+<button class="mat-toggle" data-target="list-modelagem">✕ VER ATIVIDADES</button>        </div>
+
+        <div class="mat-activities-list" id="list-modelagem">
+            <!-- ── ADICIONE ATIVIDADES AQUI ── -->
+            <div class="ativ-item" onclick="openActivity('modelagem','01','S.A. Modelagem de Sistemas','Situação de aprendizagem do 1° trimestre de Modelagem de Sistemas.','')">
+                <span class="ativ-num">01</span>
+                <div class="ativ-info">
+                    <span class="ativ-title">S.A. MODELAGEM DE SISTEMAS</span>
+                    <span class="ativ-desc">Situação de aprendizagem</span>
+                </div>
+                <span class="ativ-date">2024</span>
+            </div>
+            <div class="ativ-item" onclick="openActivity('modelagem','02','Diagrama de Casos de Uso','Modelagem dos casos de uso do sistema proposto segundo UML.','')">
+                <span class="ativ-num">02</span>
+                <div class="ativ-info">
+                    <span class="ativ-title">DIAGRAMA DE CASOS DE USO</span>
+                    <span class="ativ-desc">UML — Modelagem orientada a objetos</span>
+                </div>
+                <span class="ativ-date">2024</span>
+            </div>
+            <div class="ativ-item" onclick="openActivity('modelagem','03','Diagrama de Classes','Estrutura de classes, atributos e relacionamentos do sistema.','')">
+                <span class="ativ-num">03</span>
+                <div class="ativ-info">
+                    <span class="ativ-title">DIAGRAMA DE CLASSES</span>
+                    <span class="ativ-desc">Estrutura e relacionamentos</span>
+                </div>
+                <span class="ativ-date">2024</span>
+            </div>
+            <div class="ativ-item" onclick="openActivity('modelagem','04','Diagrama de Atividades','Fluxo de atividades e decisões do sistema proposto.','')">
+                <span class="ativ-num">04</span>
+                <div class="ativ-info">
+                    <span class="ativ-title">DIAGRAMA DE ATIVIDADES</span>
+                    <span class="ativ-desc">Fluxo e decisões</span>
+                </div>
+                <span class="ativ-date">2024</span>
+            </div>
+            <div class="ativ-item" onclick="openActivity('modelagem','05','Diagrama de Sequência','Interações entre objetos ao longo do tempo.','')">
+                <span class="ativ-num">05</span>
+                <div class="ativ-info">
+                    <span class="ativ-title">DIAGRAMA DE SEQUÊNCIA</span>
+                    <span class="ativ-desc">Interações e tempo</span>
+                </div>
+                <span class="ativ-date">2024</span>
+            </div>
+            <div class="ativ-item" onclick="openActivity('modelagem','06','Projeto Final de Matéria','Projeto integrador de modelagem de sistemas — trabalho final.','')">
+                <span class="ativ-num">06</span>
+                <div class="ativ-info">
+                    <span class="ativ-title">PROJETO FINAL DE MATÉRIA</span>
+                    <span class="ativ-desc">Projeto integrador</span>
+                </div>
+                <span class="ativ-date">2024</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANCO DE DADOS -->
+    <section class="materia-section" id="banco">
+        <div class="mat-header" style="border-left-color:#1a5200">
+            <div class="mat-header-left">
+                <span class="mat-num" style="color:#27ae60">02</span>
+                <div>
+                    <p class="mat-tag">1° TRIMESTRE</p>
+                    <h2 class="mat-title">Banco de Dados</h2>
+                </div>
+            </div>
+            <button class="mat-toggle" data-target="list-banco">&#8964; VER ATIVIDADES</button>
+        </div>
+
+        <div class="mat-activities-list" id="list-banco">
+            <!-- ── ADICIONE ATIVIDADES AQUI ── -->
+<div class="ativ-item" style="border-left-color:#1a5200" onclick="openActivity('banco', '01', 'Modelo Entidade-Relacionamento', 'Criação do diagrama ER do sistema de banco de dados.<br><br><a href=\'https://www.canva.com/design/DAHHzzkFiGE/0PovBXwvNQzaDWsAE7fESw/view\' target=\'_blank\' style=\'color: #d4af37; text-decoration: underline;\'>Grand Prix - Portfólio</a> de Larissa Amorim', 'https://www.canva.com/design/DAHHzzkFiGE/0PovBXwvNQzaDWsAE7fESw/view?embed', 'iframe')">
+    <span class="ativ-num" style="color:#27ae60">01</span>
+    <div class="ativ-info">
+        <span class="ativ-title">MODELO ENTIDADE-RELACIONAMENTO</span>
+        <span class="ativ-desc">GRAND PRIX</span>
+    </div>
+    <span class="ativ-date">2026</span>
+</div>
+        </div>
+    </section>
+
+    <!-- IOT -->
+    <section class="materia-section" id="iot">
+        <div class="mat-header" style="border-left-color:#1a3a8e">
+            <div class="mat-header-left">
+                <div>
+                    <p class="mat-tag">1° TRIMESTRE</p>
+                    <h2 class="mat-title">Internet das Coisas</h2>
+                </div>
+            </div>
+            <button class="mat-toggle" data-target="list-iot">&#8964; VER ATIVIDADES</button>
+        </div>
+
+        <div class="mat-activities-list" id="list-iot">
+            <!-- ── ADICIONE ATIVIDADES AQUI ── -->
+            <div class="ativ-item"  onclick="openActivity('iot','01','Introdução ao Arduino','Primeiros passos com Arduino, programação e eletrônica básica.','')">
+                <div class="ativ-info">
+                    <span class="ativ-title">INTRODUÇÃO AO ARDUINO</span>
+                    <span class="ativ-desc">Hardware e programação</span>
+                </div>
+                <span class="ativ-date">2024</span>
+            </div>
+            <div class="ativ-item" style="border-left-color:#1a3a8e" onclick="openActivity('iot','02','Sensores e Atuadores','Conexão e leitura de sensores ambientais com Arduino.','')">
+                <div class="ativ-info">
+                    <span class="ativ-title">SENSORES E ATUADORES</span>
+                    <span class="ativ-desc">Leitura de dados ambientais</span>
+                </div>
+                <span class="ativ-date">2024</span>
+            </div>
+            <div class="ativ-item" style="border-left-color:#1a3a8e" onclick="openActivity('iot','03','Projeto Final IoT','Projeto integrador de Internet das Coisas com Arduino.','')">
+                <div class="ativ-info">
+                    <span class="ativ-title">PROJETO FINAL IOT</span>
+                    <span class="ativ-desc">Projeto integrador</span>
+                </div>
+                <span class="ativ-date">2024</span>
+            </div>
+        </div>
+    </section>
+
+    
+</body>
+</html>

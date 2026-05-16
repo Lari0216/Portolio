@@ -1,5 +1,3 @@
-
-
 // ═══════════════════════════════════════════
 // FUNÇÃO GLOBAL: fecha todos os overlays
 // (usada pelos links do ov-navbar)
@@ -245,16 +243,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     trimDiscItems.forEach(disc => {
         disc.addEventListener('click', () => {
-            const num     = disc.getAttribute('data-trim');
-            const ordinal = num === '1' ? '1°' : num === '2' ? '2°' : '3°';
+            const num = disc.getAttribute('data-trim');
+            // 2° e 3° estão bloqueados — não faz nada
+            if (num !== '1') return;
+
+            const ordinal = '1°';
             matsTrimestreLabel.textContent = `${ordinal} TRIMESTRE`;
-            
-            currentTrimestre = num; // Salva o trimestre atual
-            buildSubjectsList(currentTrimestre); // Constrói a lista de matérias desse trimestre
+            currentTrimestre = num;
+            buildSubjectsList(currentTrimestre);
 
             trimestreEscolhaOverlay.classList.add('overlay-hidden');
             trimestreEscolhaOverlay.classList.remove('overlay-visible');
-
             materiasOverlay.classList.remove('overlay-hidden');
             materiasOverlay.classList.add('overlay-visible');
         });
@@ -268,54 +267,108 @@ document.addEventListener('DOMContentLoaded', () => {
     const matsVinylIcon  = document.getElementById('mats-vinyl-icon');
     const matsSelectedTitle = document.getElementById('mats-selected-title');
 
-    // Dados separados por trimestre
-    const trimestresData = {
-        '1': [
-            { name: 'Modelagem de Sistemas', icon: '⊞', color: 'radial-gradient(circle,#8B0000,#3a0000)',
-              activities: ['01. Diagrama de Casos de Uso','02. Diagrama de Classes','03. Diagrama de Atividades'] },
-            { name: 'Banco de Dados', icon: '🗄', color: 'radial-gradient(circle,#1a5200,#0d3a00)',
-              activities: ['01. Modelo ER','02. Normalização'] },
-            { name: 'Lógica de Programação', icon: '💻', color: 'radial-gradient(circle,#1a3a8e,#0a1a4e)',
-              activities: ['01. Algoritmos','02. Estruturas de Repetição'] }
-        ],
-        '2': [
-            { name: 'Desenvolvimento Web', icon: '🌐', color: 'radial-gradient(circle,#8B0000,#3a0000)',
-              activities: ['01. HTML & CSS','02. JavaScript Básico','03. Projeto Landing Page'] },
-            { name: 'Banco de Dados II', icon: '🗄', color: 'radial-gradient(circle,#1a5200,#0d3a00)',
-              activities: ['01. Consultas Avançadas','02. Stored Procedures'] },
-            { name: 'IoT', icon: '📡', color: 'radial-gradient(circle,#1a3a8e,#0a1a4e)',
-              activities: ['01. Introdução ao Arduino','02. Sensores'] }
-        ],
-        '3': [
-            { name: 'Projeto Final', icon: '🚀', color: 'radial-gradient(circle,#8B0000,#3a0000)',
-              activities: ['01. Definição do Escopo','02. Desenvolvimento','03. Apresentação'] },
-            { name: 'Redes de Computadores', icon: '🔌', color: 'radial-gradient(circle,#1a5200,#0d3a00)',
-              activities: ['01. Modelo OSI','02. Configuração de Roteadores'] }
+    // ═══════════════════════════════════════════
+    // DADOS POR MATÉRIA — cada matéria tem tri1, tri2, tri3 próprios
+    // EDITE AQUI para adicionar atividades sem afetar outras matérias
+    // ═══════════════════════════════════════════
+    const subjectData = [
+      {
+        name: 'Modelagem de Sistemas',
+        color: 'radial-gradient(circle, #8b0000, #000)',
+        tri1: [
+            { 
+                title: 'S.A. Modelagem de Sistemas', 
+                desc: 'Desenvolvimento completo de uma empresa fictícia de energia solar. O projeto uniu regras de negócios e tecnologia, indo desde a identidade visual e público-alvo até a documentação técnica (diagramas UML e requisitos), finalizado com um pitch de vendas.', 
+                img: 'https://www.canva.com/design/DAHEiMlngjI/JHzOzP0tJghXZUUKE24G7g/view?embed' // Link de Modelagem
+            },
+            {  
+                title: 'Grand Prix', 
+                desc: 'Participei de um desafio em equipe no SENAI onde tivemos poucos dias para resolver um problema real da indústria. Nós contextualizamos a situação e desenvolvemos um sistema de integração roteirizado para um porto.', 
+                img: 'https://www.canva.com/design/DAHHzzkFiGE/0PovBXwvNQzaDWsAE7fESw/view?embed' // Link de Modelagem
+            }
         ]
-    };
+    },
+        {
+            name: 'Banco de Dados',
+            color: 'radial-gradient(circle,#1a5200,#0d3a00)',
+            tri1: [
+                { title: 'Grand Prix', 
+                desc: 'Participei de um desafio em equipe no SENAI onde tivemos poucos dias para resolver um problema real da indústria. Nós contextualizamos a situação e desenvolvemos um sistema de integração roteirizado para um porto.',       
+                img: 'https://www.canva.com/design/DAHHzzkFiGE/0PovBXwvNQzaDWsAE7fESw/view?embed' },
 
-    let currentTrimestre = '1'; // Variável para guardar o trimestre selecionado
+            ],
+            tri2: [],
+            tri3: [],
+        },
+        {
+            name: 'IoT',
+            color: 'radial-gradient(circle,#1a3a8e,#0a1a4e)',
+            tri1: [
+                { title: 'Grand Prix',  
+                desc: 'Participei de um desafio em equipe no SENAI onde tivemos poucos dias para resolver um problema real da indústria. Nós contextualizamos a situação e desenvolvemos um sistema de integração roteirizado para um porto.',    
+                img: 'https://www.canva.com/design/DAHHzzkFiGE/0PovBXwvNQzaDWsAE7fESw/view?embed' },
+                { title: 'Problemas no Cotidiano',   
+                desc: 'Identificação de um problema do dia a dia e desenvolvimento de uma solução prática utilizando Internet das Coisas (IoT).',     
+                img: 'https://www.canva.com/design/DAHBG41dCTQ/BzNPwjlr6x9ZtiTYDz6-mA/view?embed' },
+            ],
+            tri2: [],
+            tri3: [],
+        },
+    ];
+
+    // Trimestre atual selecionado (1, 2 ou 3)
+    let currentTrimestre = '1';
+
+    // Monta a lista de matérias no overlay para o trimestre clicado
+    function buildSubjectsList(trim) {
+        matsSubjectList.innerHTML = '';
+        subjectData.forEach((subj, index) => {
+            const div = document.createElement('div');
+            div.className = 'mats-subject' + (index === 0 ? ' active' : '');
+            div.setAttribute('data-subject-index', index);
+            div.innerHTML = `
+                <span class="mats-subject-num">${String(index + 1).padStart(2, '0')}</span>
+                <span class="mats-subject-name">${subj.name}</span>`;
+            div.addEventListener('click', () => {
+                document.querySelectorAll('.mats-subject').forEach(s => s.classList.remove('active'));
+                div.classList.add('active');
+                updateMatActivities(index);
+            });
+            matsSubjectList.appendChild(div);
+        });
+        updateMatActivities(0);
+    }
 
     function updateMatActivities(index) {
-        // Agora busca os dados baseado no trimestre atual
-        const data = trimestresData[currentTrimestre][index]; 
-        if(!data) return; // Segurança caso os dados não existam
+        const subj    = subjectData[index];
+        if (!subj) return;
 
-        matsSelectedTitle.textContent = data.name;
-        // Tive que comentar essa linha pois 'matsVinylIcon' não existe no seu HTML original
-        // se você tiver adicionado esse ID no HTML, pode descomentar.
-        // matsVinylIcon.textContent = data.icon; 
-        
-        if (matsVinylLabel) matsVinylLabel.style.background = data.color;
+        matsSelectedTitle.textContent = subj.name;
+        if (matsVinylLabel) matsVinylLabel.style.background = subj.color;
+
+        // Pega as atividades do trimestre atual
+        const triKey     = 'tri' + currentTrimestre;
+        const activities = subj[triKey] || [];
 
         const list = document.getElementById('mats-activities-list');
         list.innerHTML = '';
-        data.activities.forEach((act, i) => {
+
+        if (activities.length === 0) {
+            list.innerHTML = '<p style="color:rgba(212,175,55,.4);font-size:.78rem;letter-spacing:2px;margin-top:16px;font-family:var(--font-body)">EM ANDAMENTO</p>';
+            return;
+        }
+
+        activities.forEach((act, i) => {
             const div = document.createElement('div');
             div.className = 'mats-activity-item';
             div.setAttribute('data-activity', i);
-            div.innerHTML = `<span class="mats-act-icon">🔷</span><span>${act}</span>`;
-            div.addEventListener('click', () => openAtividadeOverlay(i, data));
+            div.innerHTML = `<span class="mats-act-icon">🔷</span><span>${String(i+1).padStart(2,'0')}. ${act.title}</span>`;
+            // Passa os dados completos da atividade para o overlay
+            div.addEventListener('click', () => openAtividadeOverlay(i, {
+                name:       subj.name,
+                activities: activities.map(a => a.title),
+                actData:    activities,
+            }));
             list.appendChild(div);
         });
     }
@@ -329,8 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Inicia com primeira matéria
-    updateMatActivities(0);
+    // A lista de matérias é construída ao clicar num trimestre (buildSubjectsList)
 
     // ═══════════════════════════════════════════
     // 12. ATIVIDADE: carrossel fullscreen
@@ -353,20 +405,41 @@ document.addEventListener('DOMContentLoaded', () => {
         currentSubjectData   = data;
         renderAtividadeSlide();
 
+        materiasOverlay.classList.add('overlay-hidden');
+        materiasOverlay.classList.remove('overlay-visible');
         atividadeOverlay.classList.remove('overlay-hidden');
         atividadeOverlay.classList.add('overlay-visible');
     }
 
     function renderAtividadeSlide() {
-        const data  = currentSubjectData;
-        const total = data.activities.length;
-        const name  = data.activities[currentActivityIndex];
+        const data     = currentSubjectData;
+        const actList  = data.actData || data.activities.map(t => ({ title: t, desc: `Desenvolvida durante o curso técnico — ${data.name}.`, img: '' }));
+        const total    = actList.length;
+        const act      = actList[currentActivityIndex] || { title: data.activities[currentActivityIndex] || '', desc: '', img: '' };
 
-        atvTag.textContent   = `ATIVIDADE ${String(currentActivityIndex + 1).padStart(2, '0')}`;
-        atvTitle.textContent = name.replace(/^\d+\.\s*/, '');
-        atvDesc.textContent  = `Desenvolvida durante o curso técnico em Informática — ${data.name}.`;
+        atvTag.textContent     = `ATIVIDADE ${String(currentActivityIndex + 1).padStart(2, '0')}`;
+        atvTitle.textContent   = (act.title || act).replace(/^\d+\.\s*/, '');
+        atvDesc.textContent    = act.desc || `Desenvolvida durante o curso técnico — ${data.name}.`;
         atvCounter.textContent = `${currentActivityIndex + 1} / ${total}`;
 
+        // Imagem ou placeholder
+// Imagem, Canva ou placeholder
+        const imgArea = document.querySelector('.atv-image-area');
+      if (imgArea) {
+            if (act.img && act.img.includes('canva.com')) {
+                // Se for link do Canva, cria o player
+                imgArea.innerHTML = `
+                  <div style="position: relative; width: 100%; height: 100%; min-height: 300px; overflow: hidden; border-radius: 8px;">
+                    <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;" src="${act.img}" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+                  </div>`;
+            } else if (act.img) {
+                // Se for uma foto normal
+                imgArea.innerHTML = `<img src="${act.img}" alt="${act.title}" style="width:100%;height:100%;object-fit:cover;border-radius:8px">`;
+            } else {
+                // Se estiver vazio
+                imgArea.innerHTML = `<div class="atv-image-placeholder"><span>Imagem da Atividade</span><small>Adicione sua imagem aqui</small></div>`;
+            }
+        }
         // Dots
         atvDotsRow.innerHTML = '';
         for (let i = 0; i < total; i++) {
@@ -395,6 +468,19 @@ document.addEventListener('DOMContentLoaded', () => {
         closeAtividade.addEventListener('click', () => {
             atividadeOverlay.classList.add('overlay-hidden');
             atividadeOverlay.classList.remove('overlay-visible');
+            // Volta para o overlay de matérias (página anterior)
+            materiasOverlay.classList.remove('overlay-hidden');
+            materiasOverlay.classList.add('overlay-visible');
+        });
+    }
+    // Botão X (agora "← VOLTAR") — mesmo comportamento: volta para matérias
+    const closeAtividadeX = document.getElementById('close-atividade-x');
+    if (closeAtividadeX) {
+        closeAtividadeX.addEventListener('click', () => {
+            atividadeOverlay.classList.add('overlay-hidden');
+            atividadeOverlay.classList.remove('overlay-visible');
+            materiasOverlay.classList.remove('overlay-hidden');
+            materiasOverlay.classList.add('overlay-visible');
         });
     }
 

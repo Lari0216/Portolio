@@ -110,12 +110,12 @@ a { text-decoration:none; color:inherit; }
    HERO
 ═══════════════════════════════════════════════ */
 #hero {
-    min-height:100vh;
+    min-height: 90vh;
     display:flex; flex-direction:column;
-    align-items:center; justify-content:flex-start;
+    align-items:center; justify-content:center;
     position:relative; overflow:hidden;
     text-align:center;
-    padding:0 60px;
+    padding:0 0px;
     background:var(--bg);
 }
 #hero::before {
@@ -124,12 +124,15 @@ a { text-decoration:none; color:inherit; }
     background:radial-gradient(ellipse 80% 60% at 50% 40%, rgba(212,175,55,.07) 0%, transparent 70%);
     pointer-events:none;
 }
+
+/* Bloco de texto: centralizado verticalmente, empurrado ligeiramente para cima */
 .hero-content {
     position:relative; z-index:2;
     display:flex; flex-direction:column;
     align-items:center;
-    padding-top:clamp(110px, 16vh, 160px);
-    max-width:860px;
+    /* Leve margem negativa para compensar o disco abaixo e manter o título no centro visual */
+    margin-bottom: clamp(180px, 24vh, 280px);
+    max-width:8px;
 }
 .hero-tag {
     font-family:var(--font-body);
@@ -149,18 +152,20 @@ a { text-decoration:none; color:inherit; }
     font-size:1.05rem;
 }
 
-/* Disco hero: metade visível emergindo da base */
+/* Disco: metade visível emergindo da base, centralizado */
 .hero-vinyl-wrap {
-    position:relative; z-index:1;
-    width:100%; display:flex; justify-content:center;
-    margin-top:48px;
-    height:clamp(220px,28vh,340px);
-    overflow:hidden; flex-shrink:0;
+    position:absolute;
+    bottom:0; left:50%; transform:translateX(-50%);
+    z-index:1;
+    width:clamp(400px, 65vw, 680px);
+    height:clamp(200px, 32vh, 340px);
+    overflow:hidden;
 }
 .vinyl-hero-disc {
-    width:620px; height:620px; border-radius:50%;
+    width:100%; aspect-ratio:1;
+    border-radius:50%;
     position:absolute;
-    bottom:-50%; left:50%;
+    bottom:0; left:50%;
     transform:translateX(-50%);
     background:
         radial-gradient(circle at 32% 28%, rgba(255,255,255,.06) 0%, transparent 25%),
@@ -191,7 +196,8 @@ a { text-decoration:none; color:inherit; }
 }
 .vinyl-label {
     position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-    width:150px; height:150px; border-radius:50%;
+    width:clamp(110px,18%,160px); height:clamp(110px,18%,160px);
+    border-radius:50%;
     background:radial-gradient(circle, #2a1e00, #1a1200);
     border:1px solid rgba(212,175,55,.4);
     display:flex; flex-direction:column;
@@ -201,7 +207,7 @@ a { text-decoration:none; color:inherit; }
 .vlabel-rpm { font-family:var(--font-display); font-size:1.6rem; color:var(--gold); }
 .vlabel-sub  { font-size:.55rem; letter-spacing:3px; color:var(--muted); font-family:var(--font-body); }
 .vlabel-hole { width:10px; height:10px; border-radius:50%; background:var(--bg); border:1px solid rgba(212,175,55,.3); margin-top:6px; }
- 
+
 @keyframes vinylSpin {
     from { transform:translateX(-50%) rotate(0deg); }
     to   { transform:translateX(-50%) rotate(360deg); }
@@ -660,15 +666,24 @@ a { text-decoration:none; color:inherit; }
 #contato { padding:60px 60px; background:var(--bg2); border-top:1px solid var(--border); }
 .social-circles { display:flex; gap:28px; justify-content:center; padding:24px 0; }
 .social-circle {
-    width:96px; height:96px; border-radius:50%;
+    width:120px;
+    height:120px;
+    border-radius:50%;
     border:1px solid var(--border);
-    display:flex; flex-direction:column;
-    align-items:center; justify-content:center; gap:8px;
-    color:var(--muted); text-decoration:none;
-    transition:all .35s; background:rgba(212,175,55,.03);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    color:var(--muted);
+    text-decoration:none;
+    transition:all .35s;
+    background:rgba(212,175,55,.03);
 }
-.social-circle svg  { width:20px; height:20px; }
-.social-circle span { font-family:var(--font-body); font-size:.62rem; letter-spacing:2px; text-transform:uppercase; }
+.social-circle svg  { width:28px; height:28px; }
+.social-circle span { font-family:var(--font-body); font-size:.6rem; letter-spacing:2px; text-transform:uppercase; }
 .social-circle:hover {
     border-color:var(--gold); color:var(--gold);
     transform:translateY(-6px);
@@ -709,6 +724,7 @@ footer { border-top:1px solid var(--border); padding:30px 60px; }
         repeating-linear-gradient(-35deg, transparent, transparent 80px, rgba(212,175,55,.015) 80px, rgba(212,175,55,.015) 81px),
         repeating-linear-gradient(55deg, transparent, transparent 120px, rgba(212,175,55,.01) 120px, rgba(212,175,55,.01) 121px);
 }
+/* ── botão X de fechar — canto superior direito ── */
 #close-trim-escolha {
     position:absolute; top:28px; right:40px; z-index:10;
     width:44px; height:44px; border-radius:50%;
@@ -719,10 +735,52 @@ footer { border-top:1px solid var(--border); padding:30px 60px; }
 }
 #close-trim-escolha:hover { border-color:var(--gold); color:var(--gold); }
 
+/* ── botão VOLTAR: centralizado abaixo da navbar ── */
+.ov-back-btn {
+    position:absolute;
+    top:80px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:10;
+    background:transparent;
+    border:1px solid rgba(212,175,55,.22);
+    color:var(--muted);
+    padding:9px 28px;
+    border-radius:100px;
+    cursor:pointer;
+    font-size:.68rem;
+    letter-spacing:2px;
+    font-family:var(--font-btn);
+    font-weight:700;
+    text-transform:uppercase;
+    transition:all .3s;
+    white-space:nowrap;
+}
+.ov-back-btn:hover { border-color:var(--gold); color:var(--gold); }
+
+/* ── link "voltar para o início" — alinhado ao centro ── */
+.ov-home-link {
+    position:absolute;
+    top:128px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:10;
+    color:rgba(212,175,55,.4);
+    font-size:.6rem;
+    letter-spacing:3px;
+    text-decoration:none;
+    text-transform:uppercase;
+    transition:color .2s;
+    white-space:nowrap;
+}
+.ov-home-link:hover { color:var(--gold); }
+
 .trim-escolha-content {
     position:relative; z-index:2;
     display:flex; flex-direction:column; align-items:center;
-    padding:40px;
+    justify-content:center;
+    padding:20px 40px 40px;
+    /* sem min-height — o overlay pai já é flex center */
 }
 .trim-escolha-title {
     font-family:var(--font-display);
@@ -737,17 +795,26 @@ footer { border-top:1px solid var(--border); padding:30px 60px; }
     -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 14'%3E%3Cpath d='M0 7 Q15 2 30 7 Q45 12 60 7 Q75 2 90 7 Q105 12 120 7 Q135 2 150 7 Q165 12 180 7 Q195 2 210 7 Q225 12 240 7' stroke='white' stroke-width='2' fill='none'/%3E%3C/svg%3E");
     mask-size:cover; -webkit-mask-size:cover;
 }
+
+/* ── linha de discos: espaçamento equilibrado ── */
 .trim-discs-row {
-    display:flex; gap:80px; align-items:flex-start;
+    display:flex;
+    gap:clamp(40px, 8vw, 100px);
+    align-items:flex-start;
+    justify-content:center;
+    flex-wrap:wrap;
 }
 .trim-disc-item {
-    display:flex; flex-direction:column; align-items:center; gap:20px;
+    display:flex; flex-direction:column; align-items:center; gap:24px;
     cursor:pointer; transition:transform .3s;
 }
-.trim-disc-item:hover { transform:translateY(-12px); }
+.trim-disc-item:hover { transform:translateY(-14px); }
+
+/* ── discos maiores e mais visíveis ── */
 .trim-disc {
-    width:220px; height:220px; border-radius:50%;
-    position:relative;
+    width:clamp(200px, 22vw, 280px);
+    height:clamp(200px, 22vw, 280px);
+    border-radius:50%; position:relative;
     background:
         radial-gradient(circle at 33% 28%, rgba(255,255,255,.06) 0%, transparent 22%),
         radial-gradient(circle at 50% 50%,
@@ -764,17 +831,24 @@ footer { border-top:1px solid var(--border); padding:30px 60px; }
 }
 .trim-disc-label-center {
     position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-    width:80px; height:80px; border-radius:50%;
+    width:clamp(76px, 8vw, 100px);
+    height:clamp(76px, 8vw, 100px);
+    border-radius:50%;
     display:flex; flex-direction:column;
-    align-items:center; justify-content:center; gap:4px;
+    align-items:center; justify-content:center; gap:5px;
     border:1px solid rgba(255,255,255,.2);
 }
-.trim-disc-num { font-family:var(--font-display); font-size:1.8rem; color:#fff; line-height:1; }
-.trim-disc-hole { width:9px; height:9px; border-radius:50%; background:rgba(0,0,0,.6); }
+.trim-disc-num {
+    font-family:var(--font-display);
+    font-size:clamp(1.6rem, 3vw, 2.4rem);
+    color:#fff; line-height:1;
+}
+.trim-disc-hole { width:10px; height:10px; border-radius:50%; background:rgba(0,0,0,.6); }
 .trim-disc-label-text {
     font-family:var(--font-btn);
-    font-size:.72rem; font-weight:700;
-    letter-spacing:3px; color:var(--fg); text-transform:uppercase;
+    font-size:clamp(.72rem, 1vw, .88rem);
+    font-weight:700; letter-spacing:3px;
+    color:var(--fg); text-transform:uppercase;
 }
 
 /* ═══════════════════════════════════════════════
@@ -902,78 +976,105 @@ footer { border-top:1px solid var(--border); padding:30px 60px; }
     align-items:center; justify-content:center;
     transition:opacity .5s, visibility .5s;
 }
+
+/* botão ← VOLTAR: centralizado, bem visível */
 #close-atividade {
-    position:absolute; top:24px; right:36px; z-index:10;
-    width:44px; height:44px; border-radius:50%;
-    background:transparent; border:1px solid rgba(212,175,55,.25);
-    color:var(--muted); font-size:1rem; cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    transition:all .3s; font-family:var(--font-btn);
+    position:absolute;
+    top:80px; left:50%; transform:translateX(-50%);
+    z-index:10;
+    background:transparent;
+    border:1px solid rgba(212,175,55,.28);
+    color:var(--muted); padding:10px 32px; border-radius:100px;
+    cursor:pointer; font-size:.72rem; letter-spacing:2px;
+    transition:all .3s; font-family:var(--font-btn); font-weight:700;
+    white-space:nowrap;
+    display:flex; align-items:center; gap:8px;
 }
 #close-atividade:hover { border-color:var(--gold); color:var(--gold); }
 
+/* ── link "Voltar para o Início" dentro do overlay atividade ── */
+#atividade-overlay .ov-home-link {
+    position:absolute;
+    top:130px; left:50%; transform:translateX(-50%);
+    z-index:10;
+    color:rgba(212,175,55,.35);
+    font-size:.6rem; letter-spacing:3px;
+    text-decoration:none; text-transform:uppercase;
+    transition:color .2s; white-space:nowrap;
+}
+#atividade-overlay .ov-home-link:hover { color:var(--gold); }
+
+/* botão X: maior, canto superior direito, bem visível */
+.ov-close-x {
+    position:absolute;
+    top:20px; right:280000px; z-index:10;
+    background:rgba(212,175,55,.08);
+    border:1px solid rgba(212,175,55,.35);
+    color:var(--gold);
+    width:48px; height:48px; border-radius:50%;
+    font-size:1.1rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:all .25s; line-height:1;
+}
+.ov-close-x:hover { background:rgba(212,175,55,.2); border-color:var(--gold); transform:scale(1.08); }
+
 .atv-carousel-layout {
-    display:flex; align-items:center; gap:32px;
-    width:100%; max-width:1100px; padding:0 40px;
+    display:flex; align-items:center; gap:clamp(16px, 3vw, 48px);
+    width:100%; max-width:1200px;
+    padding:0 clamp(20px, 5vw, 60px);
+    margin-top:30px;
 }
 .atv-nav-btn {
-    flex-shrink:0; width:56px; height:56px; border-radius:50%;
+    flex-shrink:0;
+    width:clamp(48px, 7vw, 64px); height:clamp(48px, 7vw, 64px);
+    border-radius:50%;
     border:1px solid var(--border); background:var(--bg3);
-    color:var(--gold); font-size:2rem; cursor:pointer;
+    color:var(--gold); font-size:clamp(1.6rem, 2.5vw, 2.2rem);
+    cursor:pointer;
     display:flex; align-items:center; justify-content:center;
     transition:all .3s; font-family:var(--font-btn);
 }
 .atv-nav-btn:hover { background:var(--gold); color:#000; border-color:var(--gold); }
 
-.atv-slide-wrap {
-    flex:1; overflow:hidden;
-}
+.atv-slide-wrap { flex:1; overflow:hidden; }
 .atv-slide {
-    display:grid; grid-template-columns:1fr 1.4fr; gap:48px;
-    align-items:center;
+    display:grid; grid-template-columns:1fr 1.5fr;
+    gap:clamp(28px, 5vw, 64px); align-items:center;
 }
-.atv-header { display:flex; flex-direction:column; gap:14px; }
+.atv-header { display:flex; flex-direction:column; gap:18px; }
 .atv-tag {
-    font-family:var(--font-btn);
-    font-size:.72rem; font-weight:700;
+    font-family:var(--font-btn); font-size:.75rem; font-weight:700;
     letter-spacing:3px; color:var(--gold2); text-transform:uppercase;
 }
 .atv-title {
     font-family:var(--font-section);
-    font-size:2.2rem; color:var(--fg); line-height:1.1;
+    font-size:clamp(1.6rem, 3vw, 2.6rem);
+    color:var(--fg); line-height:1.1;
 }
 .atv-desc {
-    font-family:var(--font-body);
-    font-size:1rem; color:var(--muted); line-height:1.75;
+    font-family:var(--font-body); font-size:1rem;
+    color:var(--muted); line-height:1.8;
 }
 .atv-image-area {
-    aspect-ratio:4/3;
-    border:1px solid var(--border);
-    background:var(--bg3);
+    aspect-ratio:16/10;
+    border:1px solid var(--border); background:var(--bg3);
     display:flex; align-items:center; justify-content:center;
-    border-radius:4px; overflow:hidden;
+    border-radius:6px; overflow:hidden; width:100%;
 }
 .atv-image-placeholder {
-    display:flex; flex-direction:column; align-items:center; gap:8px;
+    display:flex; flex-direction:column; align-items:center; gap:10px;
     color:var(--muted); font-family:var(--font-body);
 }
-.atv-image-placeholder span { font-size:1rem; letter-spacing:2px; text-transform:uppercase; }
-.atv-image-placeholder small { font-size:.75rem; opacity:.6; }
+.atv-image-placeholder span  { font-size:1rem; letter-spacing:2px; text-transform:uppercase; }
+.atv-image-placeholder small { font-size:.78rem; opacity:.55; }
 
 .atv-footer {
     position:absolute; bottom:32px;
-    display:flex; flex-direction:column; align-items:center; gap:12px;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
 }
-.atv-counter {
-    font-family:var(--font-body);
-    font-size:.8rem; letter-spacing:2px; color:var(--muted);
-}
+.atv-counter { font-family:var(--font-body); font-size:.8rem; letter-spacing:2px; color:var(--muted); }
 .atv-dots-row { display:flex; gap:8px; }
-.atv-dot {
-    width:8px; height:8px; border-radius:50%;
-    background:var(--border); border:none; cursor:pointer;
-    transition:all .3s; padding:0;
-}
+.atv-dot { width:8px; height:8px; border-radius:50%; background:var(--border); border:none; cursor:pointer; transition:all .3s; padding:0; }
 .atv-dot.active { background:var(--gold); transform:scale(1.3); }
 
 /* ═══════════════════════════════════════════════
@@ -1182,7 +1283,7 @@ footer { border-top:1px solid var(--border); padding:30px 60px; }
 
 /* Afastar conteúdo dos overlays para não ficar atrás do navbar + botão */
 #trimestre-escolha-overlay .trim-escolha-content {
-    padding-top: 148px;
+    padding-top: 20px; /* overlay é flex-center, não precisa de padding alto */
 }
 #atividade-overlay .atv-carousel-layout { margin-top: 80px; }
 #album-overlay .player-left     { padding-top: 90px; }
@@ -1996,3 +2097,108 @@ body {
 .info-group p { color: var(--muted); line-height: 1.6; font-size: 1rem; }
 
 @keyframes spin { 100% { transform: rotate(360deg); } }
+/* ══════════════════════════════════════════════
+   CORREÇÃO 2 — FONTES MENORES / PROPORCIONAIS
+══════════════════════════════════════════════ */
+.hero-title                    { font-size: clamp(3rem, 6.5vw, 6.5rem) !important; }
+.tecnico-hero-title            { font-size: clamp(1.6rem, 3vw, 2.6rem) !important; }
+.trim-escolha-title            { font-size: clamp(1.6rem, 2.8vw, 2.4rem) !important; }
+.mats-selected-title           { font-size: 1.2rem !important; }
+.atv-title                     { font-size: clamp(1.3rem, 2.5vw, 2rem) !important; }
+.sobre-right h2                { font-size: clamp(1.6rem, 3vw, 2.6rem) !important; }
+.sobre-right h2 em             { font-size: clamp(1.4rem, 2.6vw, 2.2rem) !important; }
+.section-header h2             { font-size: clamp(1.8rem, 3.5vw, 3rem) !important; }
+.resume-name                   { font-size: 1.25rem !important; }
+.player-title, #player-title   { font-size: clamp(1.6rem, 3vw, 2.8rem) !important; }
+.trim-disc-num                 { font-size: 1.6rem !important; }
+
+/* ══════════════════════════════════════════════
+   CORREÇÃO 3a — BOTÃO X NO OVERLAY ATIVIDADE
+══════════════════════════════════════════════ */
+.ov-close-x {
+    position: absolute;
+    top: 76px; left: 32px;   /* ESQUERDA */
+    background: transparent;
+    border: 1px solid rgba(212,175,55,.25);
+    color: var(--gold);
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .25s;
+    z-index: 210;
+    line-height: 1;
+}
+.ov-close-x:hover { background: rgba(212,175,55,.15); border-color: var(--gold); }
+
+/* ══════════════════════════════════════════════
+   CORREÇÃO 3b — LINK "VOLTAR PARA O INÍCIO"
+══════════════════════════════════════════════ */
+.ov-home-link {
+    display: block;
+    position: fixed;
+    top: 115px;
+    left: 135px;
+    color: rgba(212,175,55,.45);
+    font-size: .65rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color .2s;
+    z-index: 210;
+}
+.ov-home-link:hover { color: var(--gold); }
+
+/* ══════════════════════════════════════════════
+   CORREÇÃO 4 — DISCOS BLOQUEADOS + BADGE
+══════════════════════════════════════════════ */
+.trim-disc-locked {
+    opacity: .45;
+    pointer-events: none;
+    cursor: default;
+}
+.trim-disc-badge {
+    display: block;
+    margin-top: 10px;
+    padding: 3px 12px;
+    border: 1px solid rgba(212,175,55,.3);
+    border-radius: 100px;
+    font-size: .58rem;
+    letter-spacing: 2px;
+    color: rgba(212,175,55,.6);
+    text-transform: uppercase;
+    text-align: center;
+    font-family: var(--font-body);
+}
+
+/* ══════════════════════════════════════════════
+   CORREÇÃO 5 — CONTATO MENOR + ÍCONES MENORES
+══════════════════════════════════════════════ */
+#contato { padding: 50px 5% 40px !important; }
+#contato .section-header { margin-bottom: 24px !important; }
+#contato h2 { font-size: clamp(1.5rem, 2.8vw, 2.2rem) !important; }
+
+.social-circles {
+    display: flex !important;
+    gap: 18px !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    padding: 15px 0 16px !important;
+}
+.social-circle {
+    width: 75px !important;
+    height: 72px !important;
+    border-radius: 50% !important;
+    flex-direction: column !important;
+    gap: 1px !important;
+}
+.social-circle svg {
+    width: 240px !important;
+    height: 25px !important;
+}
+.social-circle span {
+    font-size: .50rem !important;
+    letter-spacing: 1px !important;
+}
+

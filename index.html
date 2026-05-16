@@ -31,14 +31,24 @@
     </header>
 
 
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">BEM VINDO<br>AO MEU PORTFÓLIO</h1>
+        </div>
+            </div>
+        </div>
+        <div class="hero-scroll-hint">ROLE PARA BAIXO </div>
+    </section>
+
     <!-- SOBRE MIM -->
     <section id="sobre">
         <div class="sobre-left">
         </div>
         <div class="sobre-right">
-            <p class="section-tag">— SOBRE MIM</p>
-            <h2>Olá, eu sou<br><em>Larissa Amorim Kussler</em></h2>
-            <p>Nasci no dia 16 de fevereiro de 2009, na cidade de Santa Cruz do Sul no RS. Atualmente, está cursando o segundo ano do Ensino Médio técnico na instituição do Sesi. Tem interesse nas áreas de literatura, programação, química e história. Pretende seguir na carreira de direito, atuando como advogada ou como desenvolvedora de Software.</p>
+        <img src="foto.jpeg" alt="" style="position: absolute; left: 500PX; width: 300px; height: 300px; border-radius: 70%; object-fit: cover; ">           
+         <h2>Olá, eu sou<br><em>Larissa Amorim Kussler</em></h2>
+            <p>Nasci no dia 16 de fevereiro de 2009, na cidade de Santa Cruz do Sul no RS. Atualmente, está cursando o terceiro ano do Ensino Médio técnico na instituição do SESI/SENAI. Tem interesse nas áreas de literatura, programação, química e história. Pretende seguir na carreira de direito, atuando como advogada ou como desenvolvedora de Software.</p>
             </div>
         </div>
     </section>
@@ -249,7 +259,7 @@ crítico. </p>
 
     <footer>
         <div class="footer-inner">
-            <p>Feito por Larissa Amorim Kussler &#9834; 2026 — &copy; </p>
+            <p>Feito por Larissa Amorim Kussler - 2026 — &copy; </p>
         </div>
     </footer>
 
@@ -273,6 +283,7 @@ crítico. </p>
             </nav>
         </div>
         <button class="ov-back-btn" id="close-trim-escolha">&#8592; VOLTAR</button>
+        <a href="#hero" onclick="closeAllOverlays()" class="ov-home-link">&#8595; VOLTAR PARA O INÍCIO</a>
         <div class="trim-escolha-content">
             <p class="section-tag" style="text-align:center;margin-bottom:12px">— CURSO TÉCNICO</p>
             <h2 class="trim-escolha-title">ESCOLHA O TRIMESTRE</h2>
@@ -289,27 +300,29 @@ crítico. </p>
                     </div>
                     <p class="trim-disc-label-text">1° TRIMESTRE</p>
                 </div>
-                <div class="trim-disc-item" data-trim="2">
+                <div class="trim-disc-item trim-disc-locked" data-trim="2">
                     <div class="trim-disc">
                         <div class="tdisc-grooves"></div>
                         <div class="tdisc-groove-highlight"></div>
-                        <div class="trim-disc-label-center" style="background:radial-gradient(circle,#C9A95C,#8B6914)">
+                        <div class="trim-disc-label-center" style="background:radial-gradient(circle,#444,#222)">
                             <span class="trim-disc-num">02</span>
                             <div class="trim-disc-hole"></div>
                         </div>
                     </div>
                     <p class="trim-disc-label-text">2° TRIMESTRE</p>
+                    <span class="trim-disc-badge">EM ANDAMENTO</span>
                 </div>
-                <div class="trim-disc-item" data-trim="3">
+                <div class="trim-disc-item trim-disc-locked" data-trim="3">
                     <div class="trim-disc">
                         <div class="tdisc-grooves"></div>
                         <div class="tdisc-groove-highlight"></div>
-                        <div class="trim-disc-label-center" style="background:radial-gradient(circle,#D4AF37,#8B6914)">
+                        <div class="trim-disc-label-center" style="background:radial-gradient(circle,#444,#222)">
                             <span class="trim-disc-num">03</span>
                             <div class="trim-disc-hole"></div>
                         </div>
                     </div>
                     <p class="trim-disc-label-text">3° TRIMESTRE</p>
+                    <span class="trim-disc-badge">EM ANDAMENTO</span>
                 </div>
             </div>
         </div>
@@ -394,20 +407,30 @@ crítico. </p>
                 <a href="#contato" onclick="closeAllOverlays()">CONTATO</a>
             </nav>
         </div>
-        <button class="ov-back-btn" id="close-atividade">&#8592; VOLTAR</button>
+        <!-- X: fecha apenas este overlay e volta para matérias (página anterior) -->
+        <button class="ov-close-x" id="close-atividade-x" title="Voltar para matérias">&#8592; </button>
+        <!-- Voltar para o início -->
         <div class="atv-carousel-layout">
             <button class="atv-nav-btn" id="atv-prev">&#8249;</button>
             <div class="atv-slide-wrap">
                 <div class="atv-slide" id="atv-slide">
                     <div class="atv-header">
-                        <span class="atv-tag" id="atv-tag">ATIVIDADE 01</span>
+                        <p class="atv-tag" id="atv-tag">ATIVIDADE 01</p>
                         <h2 class="atv-title" id="atv-title">S.A. MODELAGEM DE SISTEMAS</h2>
                         <p class="atv-desc" id="atv-desc">Desenvolvi o diagrama de Casos de Uso do sistema segundo as regras de modelagem orientada a objetos.</p>
                     </div>
                     <div class="atv-image-area">
                         <div class="atv-image-placeholder">
-                            <span>Imagem da Atividade</span>
-                            <small>Adicione sua imagem aqui</small>
+                           <div class="sub-container-da-imagem" style="position: relative; width: 100%; height: 0; padding-top: 56.25%; overflow: hidden; border-radius: 8px;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;" 
+    src="https://www.canva.com/design/DAHHzzkFiGE/0PovBXwvNQzaDWsAE7fESw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+<div style="margin-top: 10px; font-size: 0.9rem;">
+  <a href="https://www.canva.com/design/DAHHzzkFiGE/0PovBXwvNQzaDWsAE7fESw/view" target="_blank" rel="noopener" style="color: #d4af37; text-decoration: underline;">
+    Grand Prix - Portfólio
+  </a> de Larissa Amorim
+</div>
                         </div>
                     </div>
                 </div>
@@ -415,7 +438,7 @@ crítico. </p>
             <button class="atv-nav-btn" id="atv-next">&#8250;</button>
         </div>
         <div class="atv-footer">
-            <div class="atv-counter" id="atv-counter">1 / 6</div>
+            <div class="atv-counter" id="atv-counter">1 / 2</div>
             <div class="atv-dots-row" id="atv-dots"></div>
         </div>
     </div>
@@ -442,8 +465,6 @@ crítico. </p>
             <div class="player-left">
                 <div class="player-cover-wrap">
                     <div class="player-vinyl" id="player-vinyl">
-                        <div class="vinyl-grooves"></div>
-                        <div class="vinyl-groove-highlight"></div>
                         <div class="player-vinyl-label" id="player-vinyl-label"></div>
                     </div>
                     <div class="player-sleeve" id="player-sleeve"></div>
